@@ -5,8 +5,11 @@
  */
 package exercise;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyVetoException;
+import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -24,6 +27,7 @@ public class MainWindow extends JFrame
     private JMenu file, edit, exercises,help;
     private JMenuItem open, quit;
     private JDesktopPane mdi;
+    private int index=1;
     //--------------------------------------------------------------------------
         
     public MainWindow()
@@ -41,6 +45,7 @@ public class MainWindow extends JFrame
         menu = new JMenuBar();
         file = new JMenu("FIle");
         edit = new JMenu("Edit");
+        exercises = new JMenu("Execises");
         help = new JMenu("Help");
         open = new JMenuItem("Open");
         quit = new JMenuItem("Exit");
@@ -49,6 +54,7 @@ public class MainWindow extends JFrame
         setJMenuBar(menu);
         menu.add(file);
         menu.add(edit);
+        menu.add(exercises);
         menu.add(help);        
         file.add(open);
         file.addSeparator();
@@ -66,10 +72,13 @@ public class MainWindow extends JFrame
         //----------------------------------------------------------------------
         open.addActionListener(new ActionListener(){
             public void  actionPerformed(ActionEvent e){
-                JInternalFrame child = new JInternalFrame("Untitle 1");
+                JInternalFrame child = new JInternalFrame("Untitle "+index,true,true,true,true);
                 child.setSize(400, 300);
                 child.setVisible(true);
                 mdi.add(child);
+                child.setLocation(index*10, index*10);
+                index++;
+                child.moveToFront();                
             }            
         });
         
