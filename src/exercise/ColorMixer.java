@@ -23,6 +23,7 @@ public class ColorMixer extends JInternalFrame
 {
     private JLabel mix;
     private JScrollBar red, green, blue;
+    private JLabel lred, lgreen, lblue;
     
     //--------------------------------------------------------------------------
     
@@ -39,16 +40,35 @@ public class ColorMixer extends JInternalFrame
     
     private void widgets()
     {
-        JPanel p = new JPanel(new GridLayout(3, 1));
+        JPanel p1 = new JPanel(new GridLayout(3, 1));
+        JPanel p2 = new JPanel(new GridLayout(3, 1));
+        JPanel p3 = new JPanel(new GridLayout(3, 1));
+        JPanel p4 = new JPanel(new BorderLayout());
+        
         mix = new JLabel();
         red = new JScrollBar(JScrollBar.HORIZONTAL, 128, 1, 0, 256);
         green = new JScrollBar(JScrollBar.HORIZONTAL, 128, 1, 0, 256);
         blue = new JScrollBar(JScrollBar.HORIZONTAL, 128, 1, 0, 256);
-        p.add(red);
-        p.add(green);
-        p.add(blue);
+        lred = new JLabel();
+        lgreen = new JLabel();
+        lblue = new JLabel();
+        p1.add(new JLabel("Red"));
+        p1.add(new JLabel("Green"));
+        p1.add(new JLabel("Blue"));
+        p2.add(red); 
+        p2.add(green);
+        p2.add(blue);
+        p3.add(lred);
+        p3.add(lgreen);
+        p3.add(lblue);
+        execMix();        
+        
+        p4.add(p1,BorderLayout.WEST);
+        p4.add(p2,BorderLayout.CENTER);
+        p4.add(p3,BorderLayout.EAST);
         add(mix,BorderLayout.CENTER);
-        add(p,BorderLayout.SOUTH);
+        add(p4,BorderLayout.SOUTH);
+        
         mix.setOpaque(true);
     }
     
@@ -82,5 +102,8 @@ public class ColorMixer extends JInternalFrame
         int g = green.getValue();
         int b = blue.getValue();
         mix.setBackground(new Color(r,g,b));
+        lred.setText(""+r);
+        lgreen.setText(""+g);
+        lblue.setText(""+b);
     }   
 }
