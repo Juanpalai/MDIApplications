@@ -26,7 +26,7 @@ public class MainWindow extends JFrame
     private JMenuBar menu;
     private JMenu file, edit, exercises,help;
     private JMenuItem open, quit;
-    private JMenuItem threeinline, mixer;
+    private JMenuItem threeinline, mixer, paint;
     private JDesktopPane mdi;
     private int index=1;
     //--------------------------------------------------------------------------
@@ -53,6 +53,7 @@ public class MainWindow extends JFrame
         mdi = new JDesktopPane();
         threeinline = new JMenuItem("Three in line"); 
         mixer = new JMenuItem("Color Mixer");
+        paint = new JMenuItem("Paint");
         
         setJMenuBar(menu);
         menu.add(file);
@@ -64,6 +65,7 @@ public class MainWindow extends JFrame
         file.add(quit);
         exercises.add(threeinline);
         exercises.add(mixer);
+        exercises.add(paint);
         
         add(mdi);       
         
@@ -96,6 +98,12 @@ public class MainWindow extends JFrame
         mixer.addActionListener(new ActionListener() {            
             public void actionPerformed(ActionEvent e) {
                mdi.add(new ColorMixer());
+            }
+        });
+        //----------------------------------------------------------------------
+        paint.addActionListener(new ActionListener() {            
+            public void actionPerformed(ActionEvent e) {
+               mdi.add(new SimpleGraph());
             }
         });
         
