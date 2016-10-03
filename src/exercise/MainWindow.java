@@ -26,7 +26,7 @@ public class MainWindow extends JFrame
     private JMenuBar menu;
     private JMenu file, edit, exercises,help;
     private JMenuItem open, quit;
-    private JMenuItem threeinline;
+    private JMenuItem threeinline, mixer;
     private JDesktopPane mdi;
     private int index=1;
     //--------------------------------------------------------------------------
@@ -51,7 +51,8 @@ public class MainWindow extends JFrame
         open = new JMenuItem("Open");
         quit = new JMenuItem("Exit");
         mdi = new JDesktopPane();
-        threeinline = new JMenuItem("Three in line");      
+        threeinline = new JMenuItem("Three in line"); 
+        mixer = new JMenuItem("Color Mixer");
         
         setJMenuBar(menu);
         menu.add(file);
@@ -62,6 +63,7 @@ public class MainWindow extends JFrame
         file.addSeparator();
         file.add(quit);
         exercises.add(threeinline);
+        exercises.add(mixer);
         
         add(mdi);       
         
@@ -88,6 +90,12 @@ public class MainWindow extends JFrame
         threeinline.addActionListener(new ActionListener() {            
             public void actionPerformed(ActionEvent e) {
                mdi.add(new Threeinline());
+            }
+        });
+        //----------------------------------------------------------------------
+        mixer.addActionListener(new ActionListener() {            
+            public void actionPerformed(ActionEvent e) {
+               mdi.add(new ColorMixer());
             }
         });
         
